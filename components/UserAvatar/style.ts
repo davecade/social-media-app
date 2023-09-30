@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     padding: 4,
     alignItems: 'center',
   },
-  imageContainer: {
+  avatarBorder: {
     borderWidth: 1,
     borderColor: '#F35BAC',
     borderRadius: 50,
@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
     fontFamily: getFontFamily('Inter', '500'),
     fontSize: 14,
     color: '#022150',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });
 

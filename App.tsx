@@ -30,7 +30,7 @@ const App = (): JSX.Element => {
           showsHorizontalScrollIndicator={false}
           data={userStories}
           horizontal={true}
-          renderItem={({item}) => <UserAvatar userStory={item} />}
+          renderItem={({item}) => <UserAvatar userStory={item} size="medium" />}
           keyExtractor={item => item.id.toString()}
         />
       </View>
