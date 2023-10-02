@@ -1,15 +1,13 @@
-import {Image, View, Text} from 'react-native';
+import {Image, View} from 'react-native';
 import React from 'react';
-import {UserStory} from '../../data';
 import styles from './style';
 
 type UserAvatarProps = {
-  userStory: UserStory;
+  profileImage: any;
   size?: 'small' | 'medium' | 'large';
 };
 
-const UserAvatar = ({userStory, size}: UserAvatarProps) => {
-  const {firstName, profileImage} = userStory;
+const UserAvatar = ({profileImage, size}: UserAvatarProps) => {
   let avatarSize = 60;
 
   switch (size) {
@@ -25,15 +23,10 @@ const UserAvatar = ({userStory, size}: UserAvatarProps) => {
   }
 
   return (
-    <View style={styles.avatarContainer}>
-      <View
-        style={[styles.avatarBorder, {width: avatarSize, height: avatarSize}]}>
-        <View>
-          <Image source={profileImage} style={styles.image} />
-        </View>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>{firstName}</Text>
+    <View
+      style={[styles.avatarBorder, {width: avatarSize, height: avatarSize}]}>
+      <View>
+        <Image source={profileImage} style={styles.image} />
       </View>
     </View>
   );

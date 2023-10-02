@@ -1,23 +1,23 @@
 import {useState} from 'react';
 
-type UsePaginationSettings = {
+type UsePaginationSettings<T> = {
   pageSize: number;
   initialPage: number;
-  data: any[];
+  data: T[];
 };
 
-const usePagination = ({
+const usePagination = <T>({
   pageSize,
   initialPage,
-  data,
-}: UsePaginationSettings) => {
+  data = [],
+}: UsePaginationSettings<T>) => {
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
-  const [renderedData, setRenderedData] = useState<any[]>(
+  const [renderedData, setRenderedData] = useState<T[]>(
     data.slice(0, pageSize),
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const paginate = (database: any[], current: number, size: number) => {
+  const paginate = (database: T[], current: number, size: number) => {
     const start = (current - 1) * size;
     const end = start + size;
 
@@ -30,15 +30,22 @@ const usePagination = ({
     }
 
     setIsLoading(true);
-    setTimeout(() => {
-      const nextPageData = paginate(data, currentPage + 1, pageSize);
+    const nextPageData = paginate(data, currentPage + 1, pageSize);
 
-      if (nextPageData.length > 0) {
-        setRenderedData(prev => [...prev, ...nextPageData]);
-        setCurrentPage(currentPage + 1);
-      }
-      setIsLoading(false);
-    }, 2000);
+    if (nextPageData.length > 0) {
+      setRenderedData(prev => [...prev, ...nextPageData]);
+      setCurrentPage(currentPage + 1);
+    }
+    setIsLoading(false);
+    // setTimeout(() => {
+    //   const nextPageData = paginate(data, currentPage + 1, pageSize);
+
+    //   if (nextPageData.length > 0) {
+    //     setRenderedData(prev => [...prev, ...nextPageData]);
+    //     setCurrentPage(currentPage + 1);
+    //   }
+    //   setIsLoading(false);
+    // }, 2000);
   };
 
   return {
