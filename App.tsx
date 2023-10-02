@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -9,45 +9,24 @@ import {
 import Title from './components/Title/Title';
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import globalStyles from './assets/styles/globalStyles';
-import {UserStory, userStories} from './data';
+import {userStories} from './data';
 import UserAvatar from './components/UserAvatar/UserAvatar';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-//import LoadingComponent from './components/LoadingIcon/LoadingIcon';
+import usePagination from './hooks/usePagination';
+import LoadingComponent from './components/LoadingIcon/LoadingIcon';
 
 const App = (): JSX.Element => {
   const userStoriesPageSize = 4;
-  const [userStoriesCurrentPage, setUserStoriesCurrentPage] =
-    useState<number>(1);
-  const [userStoriesRenderedData, setUserStoriesRenderedData] = useState<
-    UserStory[]
-  >([]);
-  const [isLoadingUserStories, setIsLoadingUserStories] =
-    useState<boolean>(false);
 
-  const pagination = (
-    database: UserStory[],
-    currentPage: number,
-    pageSize: number,
-  ) => {
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
-    if (start >= database.length) {
-      return [];
-    }
-
-    return database.slice(start, end);
-  };
-
-  useEffect(() => {
-    setIsLoadingUserStories(true);
-    const getInitialUserStories = pagination(
-      userStories,
-      1,
-      userStoriesPageSize,
-    );
-    setUserStoriesRenderedData(getInitialUserStories);
-    setIsLoadingUserStories(false);
-  }, []);
+  const {
+    renderedData: userStoriesRenderedData,
+    fetchNextPage: fetchNextUserStories,
+    isLoading: isLoadingUserStories,
+  } = usePagination({
+    pageSize: userStoriesPageSize,
+    initialPage: 1,
+    data: userStories,
+  });
 
   return (
     <SafeAreaView>
@@ -63,42 +42,16 @@ const App = (): JSX.Element => {
       <View style={globalStyles.container}>
         <FlatList
           //onEndReachedThreshold={0.5} // this 0.5 means that when you are at 50% of the end of the list it will trigger the onEndReached function
-          onEndReached={() => {
-            if (isLoadingUserStories) {
-              return;
-            }
-
-            setIsLoadingUserStories(true);
-            setTimeout(() => {
-              const contentToAppend = pagination(
-                userStories,
-                userStoriesCurrentPage + 1,
-                userStoriesPageSize,
-              );
-
-              if (contentToAppend.length > 0) {
-                setUserStoriesRenderedData(prev => [
-                  ...prev,
-                  ...contentToAppend,
-                ]);
-                setUserStoriesCurrentPage(userStoriesCurrentPage + 1);
-                setIsLoadingUserStories(false);
-              }
-            }, 500);
-          }}
+          onEndReached={fetchNextUserStories}
           showsHorizontalScrollIndicator={false}
           data={userStoriesRenderedData}
           horizontal={true}
-          renderItem={({item}) => (
-            <UserAvatar
-              key={`UserStory-${item.id}`}
-              userStory={item}
-              size="medium"
-            />
-          )}
+          renderItem={({item}) => {
+            return <UserAvatar userStory={item} size="medium" />;
+          }}
           keyExtractor={item => item.id.toString()}
         />
-        {/* {isLoadingUserStories && <LoadingComponent />} */}
+        {isLoadingUserStories && <LoadingComponent />}
       </View>
     </SafeAreaView>
   );

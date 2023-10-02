@@ -9,7 +9,7 @@ type UserAvatarProps = {
 };
 
 const UserAvatar = ({userStory, size}: UserAvatarProps) => {
-  const {id, firstName, profileImage} = userStory;
+  const {firstName, profileImage} = userStory;
   let avatarSize = 60;
 
   switch (size) {
@@ -25,7 +25,7 @@ const UserAvatar = ({userStory, size}: UserAvatarProps) => {
   }
 
   return (
-    <View key={id} style={styles.avatarContainer}>
+    <View style={styles.avatarContainer}>
       <View
         style={[styles.avatarBorder, {width: avatarSize, height: avatarSize}]}>
         <View>
