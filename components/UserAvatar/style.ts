@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F35BAC',
     borderRadius: 50,
-    padding: 4,
+    padding: 3,
   },
   textContainer: {
     paddingTop: 8,
