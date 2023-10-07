@@ -1,9 +1,14 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import {UserPostType} from '../../data/types';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faEllipsis} from '@fortawesome/free-solid-svg-icons';
+import {
+  faBookmark,
+  faEllipsis,
+  faHeart,
+  faMessage,
+} from '@fortawesome/free-solid-svg-icons';
 import styles from './style';
 
 type UserPostProps = {
@@ -11,7 +16,7 @@ type UserPostProps = {
 };
 
 const UserPost = ({post}: UserPostProps) => {
-  const {firstName, lastName, profileImage, image, location} = post;
+  const {firstName, lastName, profileImage, image, location, likes} = post;
 
   return (
     <View style={styles.postContainer}>
@@ -29,6 +34,28 @@ const UserPost = ({post}: UserPostProps) => {
       </View>
       <View style={styles.imageContainer}>
         <Image source={image} style={styles.image} />
+      </View>
+      <View style={styles.customerInteractions}>
+        <View style={styles.likesContainer}>
+          <TouchableOpacity>
+            <FontAwesomeIcon icon={faHeart} color="#C4C4C4" />
+          </TouchableOpacity>
+          <Text>{likes}</Text>
+        </View>
+        <View style={styles.likesContainer}>
+          <TouchableOpacity>
+            <FontAwesomeIcon icon={faMessage} color="#C4C4C4" />
+          </TouchableOpacity>
+
+          <Text>{likes}</Text>
+        </View>
+        <View style={styles.likesContainer}>
+          <TouchableOpacity>
+            <FontAwesomeIcon icon={faBookmark} color="#C4C4C4" />
+          </TouchableOpacity>
+
+          <Text>{likes}</Text>
+        </View>
       </View>
     </View>
   );

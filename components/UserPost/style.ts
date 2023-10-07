@@ -39,6 +39,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#79869F',
   },
+  customerInteractions: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingTop: 10,
+  },
+  likesContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 20,
+  },
 });
 
 export default styles;

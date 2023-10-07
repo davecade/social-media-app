@@ -2,10 +2,6 @@ import {StyleSheet} from 'react-native';
 import {getFontFamily} from '../../assets/fonts/helper';
 
 const styles = StyleSheet.create({
-  avatarContainer: {
-    padding: 4,
-    alignItems: 'center',
-  },
   avatarBorder: {
     borderWidth: 1,
     borderColor: '#F35BAC',
