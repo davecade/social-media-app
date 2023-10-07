@@ -1,15 +1,18 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import UserStories from './components/UserStories/UserStories';
 import Header from './components/Header/Header';
 import UserPostList from './components/UserPostList/UserPostList';
+import globalStyles from './assets/styles/globalStyles';
 
 const App = (): JSX.Element => {
   return (
-    <SafeAreaView>
-      <Header heading="Let's Explore" />
-      <UserStories />
-      <UserPostList />
+    <SafeAreaView style={globalStyles.flex}>
+      <View style={globalStyles.flex}>
+        <Header heading="Let's Explore" />
+        <UserStories />
+        <UserPostList />
+      </View>
     </SafeAreaView>
   );
 };

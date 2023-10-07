@@ -6,6 +6,8 @@ import {userPostsData} from '../../data/data';
 // import LoadingComponent from '../LoadingIcon/LoadingIcon';
 import {UserPostType} from '../../data/types';
 import UserPost from '../UserPost/UserPost';
+// import Header from '../Header/Header';
+// import UserStories from '../UserStories/UserStories';
 
 const UserPosts = () => {
   const userPostsPageSize = 4;
@@ -20,8 +22,15 @@ const UserPosts = () => {
   });
 
   return (
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container, globalStyles.flex]}>
       <FlatList
+        // ListHeaderComponent={() => (
+        //   <>
+        //     <Header heading="Let's Explore" />
+        //     <UserStories />
+        //   </>
+        // )}
+        style={globalStyles.flex}
         onEndReached={fetchNextUserPosts}
         showsVerticalScrollIndicator={false}
         data={userPostsRenderedData}

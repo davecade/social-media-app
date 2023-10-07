@@ -32,6 +32,9 @@ const globalStyles = StyleSheet.create({
     fontSize: 6,
     fontFamily: getFontFamily('Inter', '600'),
   },
+  flex: {
+    flex: 1,
+  },
 });
 
 export default globalStyles;
