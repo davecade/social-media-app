@@ -1,9 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {getFontFamily} from '../../assets/fonts/helper';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
   postContainer: {
-    paddingVertical: 20,
+    paddingVertical: verticalScale(20),
     borderBottomColor: '#E5E5E5',
     borderBottomWidth: 1,
     borderTopColor: '#E5E5E5',
@@ -13,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom: 10,
+    paddingBottom: verticalScale(10),
   },
   postHeader: {
     flexDirection: 'row',
@@ -25,10 +30,10 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    borderRadius: 25,
+    borderRadius: horizontalScale(25),
   },
   textContainer: {
-    paddingLeft: 10,
+    paddingLeft: horizontalScale(10),
   },
   nameText: {
     fontFamily: getFontFamily('Inter', '600'),
@@ -36,18 +41,18 @@ const styles = StyleSheet.create({
   },
   locationText: {
     fontFamily: getFontFamily('Inter', '400'),
-    fontSize: 12,
+    fontSize: scaleFontSize(12),
     color: '#79869F',
   },
   customerInteractions: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingTop: 10,
+    paddingTop: verticalScale(10),
   },
   likesContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingRight: 20,
+    paddingRight: horizontalScale(20),
   },
 });
 

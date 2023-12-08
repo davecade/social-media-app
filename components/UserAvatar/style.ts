@@ -1,19 +1,24 @@
 import {StyleSheet} from 'react-native';
 import {getFontFamily} from '../../assets/fonts/helper';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
   avatarBorder: {
     borderWidth: 1,
     borderColor: '#F35BAC',
-    borderRadius: 50,
-    padding: 3,
+    borderRadius: horizontalScale(50),
+    padding: horizontalScale(3),
   },
   textContainer: {
-    paddingTop: 8,
+    paddingTop: verticalScale(8),
   },
   text: {
     fontFamily: getFontFamily('Inter', '500'),
-    fontSize: 14,
+    fontSize: scaleFontSize(14),
     color: '#022150',
   },
   image: {

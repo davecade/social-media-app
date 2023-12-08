@@ -1,6 +1,7 @@
 import {Image, View} from 'react-native';
 import React from 'react';
 import styles from './style';
+import {horizontalScale} from '../../assets/styles/scaling';
 
 type UserAvatarProps = {
   profileImage: any;
@@ -8,17 +9,17 @@ type UserAvatarProps = {
 };
 
 const UserAvatar = ({profileImage, size}: UserAvatarProps) => {
-  let avatarSize = 60;
+  let avatarSize = horizontalScale(60);
 
   switch (size) {
     case 'small':
-      avatarSize = 50;
+      avatarSize = horizontalScale(50);
       break;
     case 'medium':
-      avatarSize = 60;
+      avatarSize = horizontalScale(60);
       break;
     case 'large':
-      avatarSize = 70;
+      avatarSize = horizontalScale(70);
       break;
   }
 
